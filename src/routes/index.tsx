@@ -1,24 +1,64 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from '@tanstack/react-router';
+import { useEffect, useState } from 'react';
+import { ArrowUpRight, ArrowDown, Download, MapPin, GraduationCap, Code2, Monitor, Camera, Mail, ArrowRight, Menu, X, Smartphone, Play, LayoutGrid, Megaphone, CalendarDays, MessageCircle, Sparkles, Boxes } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import portrait from '@/assets/putri-illustration.jpg';
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute('/')({
+  head: () => ({ meta: [
+    { title: 'Putri Sinta Anggraeni — IT & Digital Creative' },
+    { name: 'description', content: 'Kenali Putri Sinta Anggraeni, mahasiswa Sistem Informasi Universitas Semarang dengan pengalaman IT support, pengembangan web, dan konten digital.' },
+    { property: 'og:title', content: 'Putri Sinta Anggraeni — Portofolio Pribadi' },
+    { property: 'og:description', content: 'Menghubungkan teknologi dan kreativitas. Jelajahi pengalaman dan portofolio Putri Sinta Anggraeni.' },
+    { property: 'og:type', content: 'website' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+  ] }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
+const navigation = ['Beranda', 'Tentang', 'Pengalaman', 'Portofolio', 'Kontak'];
+const experiences = [
+  { title: 'IT Support Specialist', company: 'FTIK · Universitas Semarang', type: 'Internship', period: 'Semarang · On-site', description: 'Mendukung operasional IT melalui instalasi, pemeliharaan, dan troubleshooting hardware serta software. Turut menangani pengujian sistem dan dokumentasi kegiatan.' },
+  { title: 'Social Media Specialist', company: 'CV. Kinarya Project', type: 'Full-time', period: 'Jul – Des 2025 · Hybrid', description: 'Merancang kalender konten, menganalisis tren, dan mengelola komunitas. Memproduksi konten video serta mendukung strategi digital marketing dan layanan pelanggan.' },
+  { title: 'Web Developer · Magang MBKM', company: 'FTIK · Universitas Semarang', type: 'Internship', period: 'Semarang', description: 'Mengembangkan sistem inventaris dan pengajuan barang berbasis Laravel, dengan penerapan pengelolaan database, RESTful API, dan alur pengembangan SDLC.' },
+  { title: 'Asisten Dosen', company: 'FTIK · Universitas Semarang', type: 'Akademik', period: 'Semarang', description: 'Mendukung kegiatan pembelajaran dengan penguasaan materi akademik, kemampuan mengajar dan presentasi, serta keterampilan pengolahan data digital.' },
+  { title: 'Content Creator', company: 'Freelance', type: 'Freelance', period: 'Konten & dokumentasi', description: 'Mengoperasikan kamera, melakukan editing video dasar, dan menangani dokumentasi visual untuk berbagai kebutuhan konten dan acara.' },
+  { title: 'Event Volunteer', company: 'Freelance', type: 'Volunteer', period: 'Koordinasi acara', description: 'Mendukung penyelenggaraan acara melalui koordinasi kegiatan, pengelolaan administrasi, komunikasi publik, dan kerja sama tim.' },
+];
+const projects = [
+ { title:'Sistem Inventaris & Pengajuan Barang', category:'Web Development', label:'Laravel · Sistem Informasi', description:'Sistem pengelolaan inventaris dan pengajuan barang untuk mendukung operasional FTIK Universitas Semarang.', art:'web', details:['Hasil magang MBKM di FTIK Universitas Semarang.','Pengembangan sistem inventaris dan alur pengajuan barang berbasis Laravel.','Keahlian terkait: PHP, JavaScript, database, RESTful API, dan SDLC.'], tags:['Laravel','PHP','Database'] },
+ { title:'Social Media & Content Planning', category:'Digital Creative', label:'Social Media · Kinarya Project', description:'Perencanaan konten, penjadwalan publikasi, dan pengelolaan interaksi audiens untuk kebutuhan komunikasi brand.', art:'social', details:['Pengalaman sebagai Social Media Specialist di CV. Kinarya Project, Juli–Desember 2025.','Perencanaan dan penjadwalan konten, riset tren, serta editing video dasar.','Community management, customer service, dan dukungan strategi digital marketing.'], tags:['Content Planning','Digital Marketing'] },
+ { title:'Video & Dokumentasi Kegiatan', category:'Digital Creative', label:'Content Creation · Freelance', description:'Dokumentasi visual dan produksi konten video untuk mengabadikan momen serta menyampaikan cerita.', art:'media', details:['Pengalaman freelance content creator dan dokumentasi kegiatan.','Pengoperasian kamera dan penyuntingan video dasar.','Penanganan media visual untuk kebutuhan acara dan organisasi.'], tags:['Videography','Video Editing'] },
+];
+
+function ProjectArt({ kind }: { kind:string }) {
+ if(kind==='web') return <div className="project-art" aria-label="Ilustrasi sistem inventaris"><div className="mini-app"><div className="mini-bar"><Boxes size={12}/> INVENTARIS FTIK</div><div className="mini-content"><div className="mini-sidebar"><span/><span/><span/><span/></div><div className="mini-table"><strong>Ringkasan inventaris</strong><div className="mini-stats"><span>Barang</span><span>Pengajuan</span><span>Kategori</span></div><div className="mini-line"/><div className="mini-line"/><div className="mini-line"/></div></div></div></div>;
+ if(kind==='social') return <div className="project-art social-art" aria-label="Ilustrasi perencanaan konten"><div className="social-preview"><div className="social-preview-top"><Sparkles/> CONTENT STUDIO</div><div className="social-tiles">{[Camera,Megaphone,CalendarDays,MessageCircle,Play,Sparkles,LayoutGrid,Smartphone,Camera].map((Icon,i)=><div className="social-tile" key={i}><Icon/></div>)}</div></div></div>;
+ return <div className="project-art media-art" aria-label="Ilustrasi produksi video"><div className="media-preview"><Play/><div className="media-timeline"><span/><span/><span/><span/><span/></div></div></div>;
+}
+
 function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+ const [active,setActive]=useState('beranda');
+ const [menuOpen,setMenuOpen]=useState(false);
+ const [filter,setFilter]=useState('Semua');
+ const [selected,setSelected]=useState<(typeof projects)[number] | null>(null);
+ useEffect(()=>{
+  const observer=new IntersectionObserver(entries=>{ for(const entry of entries) if(entry.isIntersecting) setActive(entry.target.id); },{rootMargin:'-15% 0px -55% 0px',threshold:0});
+  navigation.forEach(item=>{const section=document.getElementById(item.toLowerCase());if(section) observer.observe(section);});
+  return ()=>observer.disconnect();
+ },[]);
+ const navLinks=navigation.map(item=><a key={item} href={`#${item.toLowerCase()}`} className={`nav-link ${active===item.toLowerCase()?'active':''}`} onClick={()=>{setActive(item.toLowerCase());setMenuOpen(false);}}>{item}</a>);
+ return <>
+  <header className="site-header"><div className="wrap nav-inner"><a className="wordmark" href="#beranda" aria-label="Putri, beranda">putri<span>.</span></a><nav aria-label="Navigasi utama" className="desktop-nav">{navLinks}</nav><Button asChild className="nav-contact"><a href="mailto:putrisintaanggraeni253@gmail.com">Mari Terhubung <ArrowUpRight/></a></Button><Button variant="ghost" size="icon" className="mobile-toggle" aria-label={menuOpen?'Tutup menu':'Buka menu'} aria-expanded={menuOpen} onClick={()=>setMenuOpen(!menuOpen)}>{menuOpen?<X/>:<Menu/>}</Button></div>{menuOpen&&<nav className="mobile-nav" aria-label="Navigasi seluler">{navLinks}</nav>}</header>
+  <main>
+   <section id="beranda" className="hero"><div className="wrap hero-grid"><div><p className="eyebrow">Halo, selamat datang di portofolio saya</p><h1>Putri Sinta<br/><span>Anggraeni.</span></h1><p className="role">Information Technology <i>✦</i> Digital Creative</p><p className="hero-description">Menghubungkan teknologi dan kreativitas untuk menciptakan solusi yang bermakna. Dari pengembangan sistem hingga cerita visual yang menginspirasi.</p><div className="hero-actions"><Button asChild><a href="/documents/CV-Putri-Sinta-Anggraeni.pdf" download><Download/> Download CV</a></Button><Button variant="outline" asChild><a href="#portofolio">Lihat Portofolio <ArrowUpRight/></a></Button></div><div className="hero-location"><MapPin/> Semarang, Jawa Tengah, Indonesia</div></div><div className="hero-visual"><div className="portrait-frame"><img src={portrait} alt="Ilustrasi kreator digital sebagai pengganti sementara foto profil Putri" width={1024} height={1024} fetchPriority="high"/></div><div className="floating-badge badge-academic"><div className="badge-icon"><GraduationCap/></div><div><strong>3,95 <small>/ 4,00</small></strong><small>IPK · Sistem Informasi</small></div></div><div className="floating-badge badge-creative"><div className="badge-icon"><Code2/></div><div><strong>Tech meets creativity</strong><small>Membangun. Berkarya. Berdampak.</small></div></div></div></div><div className="wrap availability"><div className="available-label"><span className="status-dot"/> Terbuka untuk peluang & kolaborasi</div><a href="#tentang" className="scroll-label">Kenali saya lebih dekat <ArrowDown size={13}/></a></div></section>
+   <section id="tentang" className="section"><div className="wrap"><div className="section-kicker">Sedikit tentang saya</div><h2>Rasa ingin tahu.<br/><span>Semangat untuk bertumbuh.</span></h2><div className="about-layout"><div><p className="about-copy">Saya <strong>Putri Sinta Anggraeni</strong>, mahasiswa Sistem Informasi di Universitas Semarang. Saya memiliki ketertarikan pada dunia teknologi, pengembangan web, dan kreativitas digital.</p><p className="about-copy">Pengalaman di bidang IT support, media sosial, dan dokumentasi mengajarkan saya untuk melihat tantangan dari berbagai sudut pandang—menggabungkan ketelitian teknis dengan cara berpikir kreatif.</p><div className="education"><GraduationCap/><div><h4>Universitas Semarang</h4><p>Sistem Informasi · Fakultas Teknologi Informasi dan Komunikasi</p><p className="gpa">IPK 3,95 / 4,00</p></div></div><div className="education"><GraduationCap/><div><h4>SMA Negeri 1 Godong</h4><p>Matematika dan Ilmu Pengetahuan Alam (MIPA)</p></div></div></div><div><h3 className="skills-heading">Keahlian yang saya bawa</h3><div className="skill-group"><h4><Code2/> Web & Software Development</h4><div className="skill-tags">{['PHP','JavaScript','HTML5 & CSS','Laravel','Tailwind CSS','Bootstrap','MySQL','SQLite','RESTful API','Git & GitHub','Composer','Postman','VS Code'].map(s=><span className="skill-tag" key={s}>{s}</span>)}</div></div><div className="skill-group"><h4><Monitor/> IT & Technical Support</h4><div className="skill-tags">{['Hardware & Software Installation','Troubleshooting','SDLC','System Maintenance'].map(s=><span className="skill-tag" key={s}>{s}</span>)}</div></div><div className="skill-group"><h4><Camera/> Creative & Interpersonal</h4><div className="skill-tags">{['Content Planning','Video Editing','Camera Operation','Digital Marketing','Community Management','Public Speaking','Event Coordination'].map(s=><span className="skill-tag" key={s}>{s}</span>)}</div></div></div></div></div></section>
+   <section id="pengalaman" className="section section-tinted"><div className="wrap"><div className="section-heading-row"><div><div className="section-kicker">Perjalanan profesional</div><h2>Belajar dari setiap <span>pengalaman.</span></h2></div><p className="section-intro">Berbagai peran, satu semangat yang sama: terus belajar, berkontribusi, dan memberikan yang terbaik.</p></div><div className="experience-grid">{experiences.map(e=><article className="experience-card" key={e.title}><div className="experience-top"><span className="experience-type">{e.type}</span><span className="experience-period">{e.period}</span></div><h3>{e.title}</h3><p className="experience-company">{e.company}</p><p className="description">{e.description}</p></article>)}</div></div></section>
+   <section id="portofolio" className="section"><div className="wrap"><div className="section-heading-row"><div><div className="section-kicker">Karya & kontribusi</div><h2>Dari ide menjadi <span>karya nyata.</span></h2></div><p className="section-intro">Ruang pertemuan antara kemampuan teknis, kreativitas, dan pengalaman yang saya jalani.</p></div><div className="filter-tabs" role="group" aria-label="Filter portofolio">{['Semua','Web Development','Digital Creative'].map(f=><Button key={f} variant={filter===f?'default':'ghost'} aria-pressed={filter===f} onClick={()=>setFilter(f)}>{f==='Semua'&&<LayoutGrid/>}{f}</Button>)}</div><div className="project-grid">{projects.filter(p=>filter==='Semua'||p.category===filter).map(p=><article key={p.title} className="project-card"><ProjectArt kind={p.art}/><div className="project-body"><span className="project-category">{p.label}</span><h3>{p.title}</h3><p>{p.description}</p><Button variant="link" onClick={()=>setSelected(p)}>Lihat detail <ArrowUpRight/></Button></div></article>)}</div></div></section>
+   <section id="kontak" className="section contact-section"><div className="wrap contact-inner"><div><div className="section-kicker">Mari berkolaborasi</div><h2>Ide yang baik dimulai dari<br/>sebuah <span>percakapan.</span></h2><p className="section-intro">Punya peluang, proyek, atau sekadar ingin berkenalan? Saya senang mendengar cerita dan ide Anda.</p></div><div className="contact-options"><Button className="contact-main" size="lg" asChild><a href="mailto:putrisintaanggraeni253@gmail.com">Sapa lewat email <ArrowUpRight/></a></Button><a href="mailto:putrisintaanggraeni253@gmail.com"><Mail/> putrisintaanggraeni253@gmail.com</a><a href="https://wa.me/6285600556628" target="_blank" rel="noreferrer"><MessageCircle/> 0856 0055 6628 <ArrowUpRight size={13}/></a></div></div></section>
+  </main>
+  <footer className="site-footer"><div className="wrap footer-inner"><span className="footer-brand">Putri Sinta Anggraeni.</span><p>© {new Date().getFullYear()} Putri Sinta Anggraeni. Dibuat dengan semangat berkarya.</p><a href="#beranda">Kembali ke atas <ArrowUpRight size={13}/></a></div></footer>
+  <Dialog open={selected!==null} onOpenChange={open=>{if(!open)setSelected(null);}}><DialogContent><DialogHeader><DialogTitle>{selected?.title}</DialogTitle><DialogDescription>{selected?.label}</DialogDescription></DialogHeader><div className="detail-content"><p>{selected?.description}</p><ul>{selected?.details.map(d=><li key={d}>{d}</li>)}</ul><div className="skill-tags mt-5">{selected?.tags.map(t=><span className="skill-tag" key={t}>{t}</span>)}</div></div><Button asChild><a href="mailto:putrisintaanggraeni253@gmail.com">Diskusikan pengalaman ini <ArrowRight/></a></Button></DialogContent></Dialog>
+ </>;
 }
