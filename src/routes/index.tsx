@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
-import { ArrowUpRight, ArrowDown, Download, MapPin, GraduationCap, Code2, Monitor, Camera, Mail, ArrowRight, Menu, X, Check, BriefcaseBusiness, Smartphone, Play, LayoutGrid, Megaphone, CalendarDays, MessageCircle, Sparkles, Boxes } from 'lucide-react';
+import { ArrowUpRight, ArrowDown, Download, MapPin, GraduationCap, Code2, Monitor, Camera, Mail, ArrowRight, Menu, X, Smartphone, Play, LayoutGrid, Megaphone, CalendarDays, MessageCircle, Sparkles, Boxes } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import portrait from '@/assets/putri-illustration.jpg';
