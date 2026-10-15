@@ -8,3 +8,7 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep this portfolio as one scrolling index route with anchored navigation because the user explicitly requests a single-page layout.
+- Keep portfolio content browser-safe and static, with a bundled downloadable CV; no account or persistence is needed.
+- Put presentation styles and semantic palette tokens in src/styles.css and use the shared Button for actions.
