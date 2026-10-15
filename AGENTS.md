@@ -9,6 +9,8 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 
-- Keep this portfolio as one scrolling index route with anchored navigation because the user explicitly requests a single-page layout.
+- Keep the main portfolio as one scrolling index route with anchored navigation; use a separate /dokumentasi gallery because the user requested a dedicated documentation page.
 - Keep portfolio content browser-safe and static, with a bundled downloadable CV; no account or persistence is needed.
+- Keep documentation albums in a browser-safe data module, with empty galleries until the owner supplies real photos through chat; do not invent documentation images or add upload infrastructure.
+- Centralize contact destinations in a browser-safe module to keep navbar and contact actions consistent and testable.
 - Put presentation styles and semantic palette tokens in src/styles.css and use the shared Button for actions.
