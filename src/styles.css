@@ -78,14 +78,7 @@
 .hero-location svg { width:14px; }
 .hero-visual { position:relative; padding:12px 0 16px; }
 .portrait-frame { width:100%; aspect-ratio:1; border-radius:50% 50% 47% 47%; background:var(--image-surface); overflow:hidden; border:8px solid var(--background); outline:1px solid var(--border); }
-.portrait-frame img { height:100%; width:100%; object-fit:cover; }
-.floating-badge { display:flex; align-items:center; gap:11px; position:absolute; padding:13px 17px; border:1px solid var(--border); background:var(--background); border-radius:7px; box-shadow:var(--shadow-soft); }
-.badge-icon { height:33px; width:33px; border-radius:6px; display:grid; place-items:center; background:var(--secondary); color:var(--primary); }
-.badge-icon svg { width:18px; }
-.floating-badge strong { display:block; font-size:12px; }
-.floating-badge small { font-size:9px; color:var(--muted-foreground); }
-.badge-academic { top:46px; right:-22px; }
-.badge-creative { bottom:39px; left:-30px; }
+.portrait-frame img { height:100%; width:100%; object-fit:cover; object-position:center top; }
 .availability { border-top:1px solid var(--border); padding:17px 0; display:flex; align-items:center; justify-content:space-between; font-size:10px; color:var(--muted-foreground); }
 .available-label { display:flex; align-items:center; gap:8px; }
 .status-dot { width:6px; height:6px; border-radius:50%; background:var(--success); }
@@ -194,20 +187,15 @@
 }
 @media(min-width:1450px) { .hero-grid { padding-block:84px; } }
 @media(max-width:1000px) {
- .wrap { width:calc(100% - 56px); } .desktop-nav { gap:20px; } .hero-grid { gap:35px; } .hero h1 { font-size:47px; } .role { font-size:12px; } .badge-academic { right:-10px; } .badge-creative { left:-15px; } .about-layout { gap:45px; }
+ .wrap { width:calc(100% - 56px); } .desktop-nav { gap:20px; } .hero-grid { gap:35px; } .hero h1 { font-size:47px; } .role { font-size:12px; } .about-layout { gap:45px; }
 }
 @media(max-width:700px) {
  .wrap { width:calc(100% - 40px); } .nav-inner { height:69px; gap:12px; } .wordmark { font-size:14px; } .desktop-nav,.nav-contact { display:none; } .mobile-toggle { display:inline-flex; flex-shrink:0; } .mobile-nav { display:flex; flex-direction:column; padding:5px 20px 18px; gap:0; border-top:1px solid var(--border); } .mobile-nav .nav-link { padding:12px 0; } .mobile-nav .nav-link::after { display:none; }
- .hero-grid { grid-template-columns:1fr; padding-top:43px; padding-bottom:32px; gap:32px; } .hero h1 { font-size:46px; line-height:1.2; } .eyebrow { font-size:9px; margin-bottom:19px; } .role { font-size:11px; } .hero-description { font-size:12px; } .hero-actions { margin-top:23px; } .hero-visual { max-width:330px; width:calc(100% - 25px); margin:0 auto; } .floating-badge { padding:10px 12px; } .badge-academic { top:30px; right:-13px; } .badge-creative { left:-12px; bottom:28px; } .availability { gap:18px; font-size:8px; } .scroll-label { font-size:0; } .scroll-label svg { width:15px; } .section { padding:54px 0; } .section h2 { font-size:27px; } .about-layout { grid-template-columns:1fr; gap:28px; margin-top:24px; } .section-heading-row { display:block; margin-bottom:24px; } .section-heading-row .section-intro { margin-top:13px; } .experience-grid,.project-grid { grid-template-columns:1fr; } .experience-card { padding:22px; } .project-grid { gap:20px; } .project-art { aspect-ratio:1.7; } .project-body { padding:22px; } .contact-inner { display:block; } .contact-inner h2 { font-size:28px; } .contact-options { margin-top:28px; } .contact-options>a { font-size:11px; overflow-wrap:anywhere; } .footer-inner { flex-wrap:wrap; } .footer-inner p { order:3; width:100%; margin:0; } .footer-inner a { margin-left:auto; } }
+ .hero-grid { grid-template-columns:1fr; padding-top:43px; padding-bottom:32px; gap:32px; } .hero h1 { font-size:46px; line-height:1.2; } .eyebrow { font-size:9px; margin-bottom:19px; } .role { font-size:11px; } .hero-description { font-size:12px; } .hero-actions { margin-top:23px; } .hero-visual { max-width:330px; width:calc(100% - 25px); margin:0 auto; } .availability { gap:18px; font-size:8px; } .scroll-label { font-size:0; } .scroll-label svg { width:15px; } .section { padding:54px 0; } .section h2 { font-size:27px; } .about-layout { grid-template-columns:1fr; gap:28px; margin-top:24px; } .section-heading-row { display:block; margin-bottom:24px; } .section-heading-row .section-intro { margin-top:13px; } .experience-grid,.project-grid { grid-template-columns:1fr; } .experience-card { padding:22px; } .project-grid { gap:20px; } .project-art { aspect-ratio:1.7; } .project-body { padding:22px; } .contact-inner { display:block; } .contact-inner h2 { font-size:28px; } .contact-options { margin-top:28px; } .contact-options>a { font-size:11px; overflow-wrap:anywhere; } .footer-inner { flex-wrap:wrap; } .footer-inner p { order:3; width:100%; margin:0; } .footer-inner a { margin-left:auto; } }
 @media(max-width:700px) {
  .hero-grid { padding-top:32px; padding-bottom:20px; gap:20px; }
  .hero-visual { max-width:230px; }
  .hero-location { margin-top:18px; }
- .hero-visual .floating-badge { padding:8px 10px; gap:7px; }
- .hero-visual .floating-badge strong { font-size:10px; }
- .hero-visual .floating-badge small { font-size:8px; }
- .badge-academic { right:-36px; top:22px; }
- .badge-creative { left:-35px; bottom:19px; }
  .contact-options { margin-top:0; }
  .documentation-grid { grid-template-columns:1fr; }
  .documentation-page h1 { font-size:27px; }
