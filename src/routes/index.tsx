@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { ArrowUpRight, Download, MapPin, GraduationCap, Code2, Monitor, Camera, Mail, Menu, X, Smartphone, Play, LayoutGrid, Megaphone, CalendarDays, MessageCircle, Sparkles, Boxes } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { portfolioContact } from '@/lib/portfolio-contact';
-import portrait from '@/assets/putri-illustration.jpg';
+import portraitAsset from '@/assets/putri-profile.jpg.asset.json';
 
 export const Route = createFileRoute('/')({
   head: () => ({ meta: [
